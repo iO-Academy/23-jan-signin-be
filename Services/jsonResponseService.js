@@ -1,4 +1,4 @@
-const jsonResponseService = (msg, data, statusCode ) => {
+const jsonResponseService = (msg, data, statusCode) => {
     if (typeof msg === 'string' && Array.isArray(data) && typeof statusCode === 'number') {
         return {
             msg,
