@@ -19,20 +19,29 @@ nodemon app.js
 ## API Docs
 
 ***Sign in a new visitor***
+
 **URL**
+
 `/signin`
+
 **Method:**
+
 `POST`
+
 **Body Content**
-``json
+
+``
 {
     "name":"Bob Gunderson"
     "company":"BobCo"
 }
 ``
+
 "company" is an optional parameter.
+
 **Success Response**
-``json
+
+``
 {
     "msg": "Checked in successfully",
     "data": [
@@ -45,9 +54,12 @@ nodemon app.js
     "status": 200
 }
 ``
+
 **Failure Responses**
+
 Empty Request
-``json
+
+``
 {
     "msg": "Error: Request cannot be empty",
     "data": [],
@@ -56,7 +68,8 @@ Empty Request
 ``
 
 Name is null
-``json
+
+``
 {
     "msg": "Error: Name cannot be null",
     "data": [],
@@ -65,7 +78,8 @@ Name is null
 ``
 
 Failed to add to database
-``json
+
+``
 {
     "msg": "Error: Check in failed",
     "data": [],
