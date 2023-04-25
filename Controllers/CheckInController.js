@@ -8,19 +8,11 @@ const newSignIn = async (req,res)=> {
     let company = req.body.company
     let checkInTime = Date.now()
 
-    let strRegex = /^[a-z ,.'-]+$/
-
     if(Object.keys(req.body).length === 0) {
         return res.json(jsonResponseService("Error: Request cannot be empty",[],500))
     }
     if(name===null){
         return res.json(jsonResponseService("Error: Name cannot be null",[],400))
-    }
-    if(!strRegex.test(name)){
-        return res.json(jsonResponseService("Error: Name failed validation",[],400))
-    }
-    if((company !== null)&&(!strRegex.test(company))) {
-        return res.json(jsonResponseService("Error: Company failed validation",[],400))
     }
 
     const collection = await DbService('OfficeGuestBook','GuestBook')
