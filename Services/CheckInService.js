@@ -1,6 +1,5 @@
 
-const newCheckIn = async (collection,name,company) => {
-    let checkInTime = Date.now()
+const newCheckIn = async (collection,name,company,checkInTime) => {
 
     return await collection.insertOne({name,company,checkInTime})
 }
