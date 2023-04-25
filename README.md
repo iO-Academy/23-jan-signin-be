@@ -46,3 +46,29 @@ nodemon app.js
 }
 ``
 **Failure Responses**
+Empty Request
+``json
+{
+    "msg": "Error: Request cannot be empty",
+    "data": [],
+    "status": 500
+}
+``
+
+Name is null
+``json
+{
+    "msg": "Error: Name cannot be null",
+    "data": [],
+    "status": 400
+}
+``
+
+Failed to add to database
+``json
+{
+    "msg": "Error: Check in failed",
+    "data": [],
+    "status": 400
+}
+``

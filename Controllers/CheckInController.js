@@ -22,7 +22,7 @@ const newSignIn = async (req,res)=> {
             {"name":name,"company":company,"checkInTime":TimeStampConverterService.convertToHourMinuteString(checkInTime)}
         ],200))
     } else {
-        return res.json(jsonResponseService("Check in failed",[],400))
+        return res.json(jsonResponseService("Error: Check in failed",[],400))
     }
 }
 
