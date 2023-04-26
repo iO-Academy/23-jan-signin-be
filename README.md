@@ -6,6 +6,11 @@ The front-end can be found [here](https://github.com/iO-Academy/23-jan-signin-fe
 
 Requires a mongoDB database to be set up with the name `OfficeGuestBook` and collection named `GuestBook`
 
+Once cloned run the below to install dependencies.
+````
+npm i
+````
+
 To run the tests:
 
 ```
@@ -34,7 +39,7 @@ nodemon app.js
 
 ```
 {
-    "name":"Bob Gunderson"
+    "name":"Bob Gunderson",
     "company":"BobCo"
 }
 ```
