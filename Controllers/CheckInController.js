@@ -27,4 +27,30 @@ const newSignIn = async (req,res)=> {
     }
 }
 
+const verifyAdminCode = async (req,res)=> {
+
+    if(Object.keys(req.body).length === 0) {
+        return res.json(jsonResponseService("Error: Request cannot be empty",[],500))
+    }
+    if(!("code" in req.body)||(req.body.code===null)){
+        return res.json(jsonResponseService("Error: Code cannot be null",[],400))
+    }
+    if(typeof req.body.code != "number"){
+        return res.json(jsonResponseService("Error: Code must be numeric",[],400))
+    }
+    if(req.body.code.toString().length !== 4){
+        return res.json(jsonResponseService("Error: Code must be 4 digits",[],400))
+    }
+
+    const collection = await DbService('OfficeGuestBook','Admin')
+    const data = await collection.find({code: req.body.code}).toArray()
+
+    if (Object.keys(data).length !== 0){
+        return res.json(jsonResponseService("Code authentication successful",[{"authenticated":true}],200))
+    }
+
+    return res.json(jsonResponseService("Code authentication failed",[{"authenticated":false}],401))
+}
+
 exports.newSignIn = newSignIn
+exports.verifyAdminCode = verifyAdminCode

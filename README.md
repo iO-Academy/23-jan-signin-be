@@ -93,3 +93,112 @@ Failed to add to database
     "status": 400
 }
 ```
+
+Non-json data posted
+
+```
+{
+    "msg": "Error: Only JSON content is permitted",
+    "data": [],
+    "status": 400
+}
+```
+
+***Verify Admin Key Code***
+
+**URL**
+
+`/verify`
+
+**Method:**
+
+`POST`
+
+**Body Content**
+
+```
+{
+    "code":4004
+}
+```
+
+**Success Response**
+
+Code passes
+```
+{
+    "msg": "Code authentication successful",
+    "data": [
+        {
+            "authenticated": true
+        }
+    ],
+    "status": 200
+}
+```
+
+Code fails
+
+```
+{
+    "msg": "Code authentication failed",
+    "data": [
+        {
+            "authenticated": false
+        }
+    ],
+    "status": 401
+}
+```
+
+**Failure Responses**
+
+Empty request
+
+```
+{
+    "msg": "Error: Request cannot be empty",
+    "data": [],
+    "status": 500
+}
+```
+
+Null code
+
+```
+{
+    "msg": "Error: Code cannot be null",
+    "data": [],
+    "status": 500
+}
+```
+
+Non-Numeric code
+
+```
+{
+    "msg": "Error: Code must be numeric",
+    "data": [],
+    "status": 500
+}
+```
+
+Code is incorrect length
+
+```
+{
+    "msg": "Error: Code must be 4 digits",
+    "data": [],
+    "status": 500
+}
+```
+
+Non-json data posted
+
+```
+{
+    "msg": "Error: Only JSON content is permitted",
+    "data": [],
+    "status": 400
+}
+```
