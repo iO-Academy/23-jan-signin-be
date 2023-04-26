@@ -4,16 +4,17 @@ const jsonResponseService = require("../Services/jsonResponseService");
 const TimeStampConverterService = require ("../Services/TimestampConverterService")
 
 const newSignIn = async (req,res)=> {
-    let name = req.body.name
-    let company = req.body.company
-    let checkInTime = Date.now()
-
     if(Object.keys(req.body).length === 0) {
         return res.json(jsonResponseService("Error: Request cannot be empty",[],500))
     }
-    if(name===null){
+
+    if(!("name" in req.body)||(req.body.name===null)){
         return res.json(jsonResponseService("Error: Name cannot be null",[],400))
     }
+
+    let name = req.body.name
+    let company = req.body.company
+    let checkInTime = Date.now()
 
     const collection = await DbService('OfficeGuestBook','GuestBook')
     const data = await CheckInService.newCheckIn(collection,name,company,checkInTime)
