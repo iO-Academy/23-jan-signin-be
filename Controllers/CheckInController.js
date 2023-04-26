@@ -52,5 +52,15 @@ const verifyAdminCode = async (req,res)=> {
     return res.json(jsonResponseService("Code authentication failed",[{"authenticated":false}],401))
 }
 
+const activeSignIns = async (req,res)=> {
+    const collection = await DbService('OfficeGuestBook','GuestBook')
+    const data = await collection.find({checkOutTime:{$exists:false}}).toArray()
+    data.forEach (item => {
+            item.checkInTime=TimeStampConverterService.convertToHourMinuteString(item.checkInTime)
+    })
+    return res.json(jsonResponseService("Records retrieved successfully",[data],200))
+}
+
 exports.newSignIn = newSignIn
 exports.verifyAdminCode = verifyAdminCode
+exports.activeSignIns = activeSignIns
