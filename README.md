@@ -4,7 +4,9 @@ The front-end can be found [here](https://github.com/iO-Academy/23-jan-signin-fe
 
 ## Installation
 
-Requires a mongoDB database to be set up with the name `OfficeGuestBook` and collection named `GuestBook`
+Requires a mongoDB database to be set up with the name `OfficeGuestBook` and collections named `GuestBook` and `Admin`.
+`Admin` should contain at least one admin code otherwise it will not be possible to access the admin panel on the front end.
+Codes should be formatted like `"code":1234` in the collection.
 
 Once cloned run the below to install dependencies.
 ````
@@ -89,6 +91,115 @@ Failed to add to database
 ```
 {
     "msg": "Error: Check in failed",
+    "data": [],
+    "status": 400
+}
+```
+
+Non-json data posted
+
+```
+{
+    "msg": "Error: Only JSON content is permitted",
+    "data": [],
+    "status": 400
+}
+```
+
+***Verify Admin Key Code***
+
+**URL**
+
+`/verify`
+
+**Method:**
+
+`POST`
+
+**Body Content**
+
+```
+{
+    "code":4004
+}
+```
+
+**Success Response**
+
+Code passes
+```
+{
+    "msg": "Code authentication successful",
+    "data": [
+        {
+            "authenticated": true
+        }
+    ],
+    "status": 200
+}
+```
+
+Code fails
+
+```
+{
+    "msg": "Code authentication failed",
+    "data": [
+        {
+            "authenticated": false
+        }
+    ],
+    "status": 401
+}
+```
+
+**Failure Responses**
+
+Empty request
+
+```
+{
+    "msg": "Error: Request cannot be empty",
+    "data": [],
+    "status": 500
+}
+```
+
+Null code
+
+```
+{
+    "msg": "Error: Code cannot be null",
+    "data": [],
+    "status": 500
+}
+```
+
+Non-Numeric code
+
+```
+{
+    "msg": "Error: Code must be numeric",
+    "data": [],
+    "status": 500
+}
+```
+
+Code is incorrect length
+
+```
+{
+    "msg": "Error: Code must be 4 digits",
+    "data": [],
+    "status": 500
+}
+```
+
+Non-json data posted
+
+```
+{
+    "msg": "Error: Only JSON content is permitted",
     "data": [],
     "status": 400
 }
