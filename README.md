@@ -4,7 +4,9 @@ The front-end can be found [here](https://github.com/iO-Academy/23-jan-signin-fe
 
 ## Installation
 
-Requires a mongoDB database to be set up with the name `OfficeGuestBook` and collection named `GuestBook`
+Requires a mongoDB database to be set up with the name `OfficeGuestBook` and collections named `GuestBook` and `Admin`.
+`Admin` should contain at least one admin code otherwise it will not be possible to access the admin panel on the front end.
+Codes should be formatted like `"code":1234` in the collection.
 
 Once cloned run the below to install dependencies.
 ````
