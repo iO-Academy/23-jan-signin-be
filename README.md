@@ -254,7 +254,7 @@ No active sign ins
 
 **URL**
 
-`/activeSignIns`
+`/search`
 
 **Method:**
 
