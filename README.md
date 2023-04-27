@@ -1,4 +1,4 @@
-# year-cohort-projectName (eg: 22-jul-projectName)
+# 23-jan-signnin-be
 This is the back-end RESTful API for the final project for the 2023 Woodchucks team at io Academy.
 The front-end can be found [here](https://github.com/iO-Academy/23-jan-signin-fe).
 
