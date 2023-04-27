@@ -204,3 +204,38 @@ Non-json data posted
     "status": 400
 }
 ```
+
+***Get all active sign ins***
+
+**URL**
+
+`/activeSignIns`
+
+**Method:**
+
+`GET`
+
+**Success Response**
+
+```
+{
+    "msg": "Records retrieved successfully",
+    "data": [
+        [
+            {
+                "_id": "64492b4aac1551ec63a0ac51",
+                "name": "jog",
+                "company": null,
+                "checkInTime": "14:46"
+            },
+            {
+                "_id": "6449501c6228521e9ba38c12",
+                "name": "john",
+                "company": "johnCo",
+                "checkInTime": "17:23"
+            }
+        ]
+    ],
+    "status": 200
+}
+```
