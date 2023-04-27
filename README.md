@@ -76,11 +76,11 @@ Empty Request
 }
 ```
 
-Name is null
+Name is null/empty
 
 ```
 {
-    "msg": "Error: Name cannot be null",
+    "msg": "Error: Name cannot be null/empty",
     "data": [],
     "status": 400
 }
@@ -217,11 +217,12 @@ Non-json data posted
 
 **Success Response**
 
+Active Sign ins found
+
 ```
 {
     "msg": "Records retrieved successfully",
     "data": [
-        [
             {
                 "_id": "64492b4aac1551ec63a0ac51",
                 "name": "jog",
@@ -234,8 +235,92 @@ Non-json data posted
                 "company": "johnCo",
                 "checkInTime": "17:23"
             }
-        ]
     ],
     "status": 200
+}
+```
+
+No active sign ins
+
+```
+{
+    "msg": "No matching records found",
+    "data": [],
+    "status": 200
+}
+```
+
+***Search Sign for sign in by name***
+
+**URL**
+
+`/search`
+
+**Method:**
+
+`GET`
+
+**Body:**
+
+```
+{
+    "name":"j"
+}
+```
+
+**Success Response**
+
+Records Found
+
+```
+{
+    "msg": "Records retrieved successfully",
+    "data": [
+            {
+                "_id": "64492b4aac1551ec63a0ac51",
+                "name": "jog",
+                "company": null,
+                "checkInTime": "14:46"
+            },
+            {
+                "_id": "6449501c6228521e9ba38c12",
+                "name": "john",
+                "company": "johnCo",
+                "checkInTime": "17:23"
+            }
+    ],
+    "status": 200
+}
+```
+
+No matches found
+
+```
+{
+    "msg": "No matching records found",
+    "data": [],
+    "status": 200
+}
+```
+
+**Failure Responses**
+
+Empty Request
+
+```
+{
+    "msg": "Error: Request cannot be empty",
+    "data": [],
+    "status": 500
+}
+```
+
+Name is null/empty
+
+```
+{
+    "msg": "Error: Name cannot be null/empty",
+    "data": [],
+    "status": 400
 }
 ```
