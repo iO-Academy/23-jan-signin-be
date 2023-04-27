@@ -8,6 +8,7 @@ const routes = (app) => {
     app.post('/verify',checkJsonMiddleware,CheckInController.verifyAdminCode)
     app.get('/activeSignIns',CheckInController.activeSignIns)
     app.get('/search',checkJsonMiddleware,CheckInController.getByName)
+    app.put('/signout',checkJsonMiddleware,CheckInController.signOutById)
     app.all('*', (req, res) => {
         return res.json(jsonResponseService("Invalid route",[],404))
     })

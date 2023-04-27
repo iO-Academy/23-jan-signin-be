@@ -250,7 +250,7 @@ No active sign ins
 }
 ```
 
-***Search Sign for sign in by name***
+***Search for sign in by name***
 
 **URL**
 
@@ -320,6 +320,73 @@ Name is null/empty
 ```
 {
     "msg": "Error: Name cannot be null/empty",
+    "data": [],
+    "status": 400
+}
+```
+
+***Sign out guest by ID***
+
+**URL**
+
+`/signout`
+
+**Method:**
+
+`PUT`
+
+**Body:**
+
+```
+{
+    "id":"64492b4aac1551ec63a0ac51"
+}
+```
+
+**Success Response**
+Guest checked out successfully
+```
+{
+    "msg": "Guest checked out successfully",
+    "data": [
+        {
+            "name": "john",
+            "company": "johnCo",
+            "checkInTime": "11:11",
+            "checkOutTime": "14:54"
+        }
+    ],
+    "status": 200
+}
+```
+
+**Failure Responses**
+
+Empty request
+
+```
+{
+    "msg": "Error: Request cannot be empty",
+    "data": [],
+    "status": 500
+}
+```
+
+Error: Invalid ID
+
+```
+{
+    "msg": "Error: Invalid ID",
+    "data": [],
+    "status": 400
+}
+```
+
+No matching checked in guest
+
+```
+{
+    "msg": "Error: No matching checked in guest",
     "data": [],
     "status": 400
 }

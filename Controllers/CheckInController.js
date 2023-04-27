@@ -1,6 +1,7 @@
 const DbService = require("../Services/DbService");
 const jsonResponseService = require("../Services/jsonResponseService");
 const TimeStampConverterService = require ("../Services/TimestampConverterService")
+const {ObjectId} = require("mongodb");
 
 const newSignIn = async (req,res)=> {
 
@@ -72,7 +73,47 @@ const getByName = async (req,res)=> {
     return res.json(jsonResponseService("Records retrieved successfully",data,200))
 }
 
+const signOutById = async (req,res)=> {
+
+    if (!ObjectId.isValid(req.body.id)){
+        return res.json(jsonResponseService("Error: Invalid ID",[],400))
+    }
+
+    let id = new ObjectId(req.body.id)
+
+    const collection = await DbService ('OfficeGuestBook','GuestBook')
+
+    let filter = {
+        _id: id,
+        checkOutTime: {
+            $exists: false
+        }
+    }
+    let update = {
+        $set: {
+            checkOutTime : Date.now()
+        }
+    }
+    let options = {
+        upsert: false,
+        returnDocument: 'after'
+    }
+
+    const data = await collection.findOneAndUpdate(filter, update,options)
+    if (data.value === null) {
+        return res.json(jsonResponseService("Error: No matching checked in guest",[],400))
+    }
+    
+    return res.json(jsonResponseService("Guest checked out successfully", [{
+        "name": data.value.name,
+        "company": data.value.company,
+        "checkInTime": TimeStampConverterService.convertToHourMinuteString(data.value.checkInTime),
+        "checkOutTime": TimeStampConverterService.convertToHourMinuteString(data.value.checkOutTime)
+    }], 200))
+}
+
 exports.newSignIn = newSignIn
 exports.verifyAdminCode = verifyAdminCode
 exports.activeSignIns = activeSignIns
 exports.getByName = getByName
+exports.signOutById = signOutById
